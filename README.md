@@ -34,19 +34,9 @@ Plankton currently supports:
 
 - **ROS 2 Humble** with **Gazebo 9** or **Gazebo 11** and **Ubuntu 22.04**
 
-- **ROS 2 Galactic** with **Gazebo 9** or **Gazebo 11** and **Ubuntu 20.04**
 
-- **ROS 2 Foxy** with **Gazebo 9** or **Gazebo 11** and **Ubuntu 20.04**
+### 1. Install ROS 2 Humble
 
-- **ROS 2 Eloquent**, **Ubuntu 18.04** and **Gazebo 9**
-
-### 1. Install ROS 2 Foxy or Galactic
-
-If you don’t have ROS 2 Foxy or installed, follow the instructions below and prefer to install the `ros-foxy-desktop` package:
-<https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html/>
-
-For ROS 2 Galactic the instructions for installing the `ros-galactic-desktop` package can be found here:
-<https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html/>
 
 For ROS 2 Humble the instructions for installing the `ros-humble-desktop` package can be found here:
 <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html/>
@@ -70,13 +60,8 @@ You can write `gazebo` in a terminal to make sure that gazebo runs correctly. Wr
 
 ### 3. Install the ros packages for gazebo
 
-For Foxy, write in a terminal:  
-`sudo apt install ros-foxy-gazebo-ros-pkgs`
 
-For Galactic:
-`sudo apt install ros-galactic-gazebo-ros-pkgs`
-
-For Humble:
+For Humble,  write in a terminal:  
 `sudo apt install ros-humble-gazebo-ros-pkgs`
 
 >See <http://gazebosim.org/tutorials?tut=ros2_installing&cat=connect_ros> for more detailed information about gazebo and ROS 2 connection.
@@ -93,7 +78,7 @@ Make sure git is installed:
 `sudo apt install git`
 
 Now, clone the Plankton repository:  
-`git clone https://www.github.com/Liquid-ai/Plankton.git`
+`git clone https://github.com/Abinesh-Thankaraj/Plankton-ROS2-Humble
 
 At this point, you need to source 2 different files described below to configure ROS 2 and Gazebo environment variables: 
    - For ROS 2 variables
@@ -116,7 +101,7 @@ rosdep update --include-eol-distros
 Browse to the root of your workspace and check for missing dependencies:  
 ```
 cd ~/ros2_ws/
-rosdep install -i --from-path src --rosdistro <ros distro> -y
+rosdep install -i --from-path src --rosdistro humble -y
 ```
 
 Install Colcon, the build tool system:  
@@ -136,7 +121,7 @@ If everything went well, you should be able to run example cases.
 Note: Every time you open a new terminal, you need to source 3 different files described below to configure ROS 2 and Gazebo environment variables. Write the following each time you start a new terminal to deal with ROS 2 / Gazebo stuff, or prefer to add them at the end of your .bashrc file with `gedit ~/.bashrc`. For the latter, don’t forget to source your .bashrc to enforce the update after saving these changes, or open a fresh terminal.  
 
    - For ROS 2 variables
-`source /opt/ros/<distro>/setup.bash`  
+`source /opt/ros/humble/setup.bash`  
    - For your installation workspace (change the path accordingly)  
 `source $HOME/ros2_ws/install/setup.bash`  
    - For Gazebo   
