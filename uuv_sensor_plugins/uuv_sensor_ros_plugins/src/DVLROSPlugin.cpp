@@ -22,7 +22,6 @@
 #include <uuv_sensor_ros_plugins/DVLROSPlugin.h>
 
 #include <tf2_ros/create_timer_ros.h>
-#include <rclcpp/qos.hpp>
 
 namespace gazebo
 {
@@ -94,23 +93,15 @@ void DVLROSPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   GZ_ASSERT(!beamTopic.empty(), "Beam 3 topic name empty");
   this->beamTopics.push_back(beamTopic);
 
-  // Define qos for subscribers
-  // NOTE: fixes qos incompatibility problem with the publishers  
-  rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
-  qos_profile.history=RMW_QOS_POLICY_HISTORY_KEEP_LAST;
-  qos_profile.depth=10;
-  qos_profile.reliability=RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-  qos_profile.durability=RMW_QOS_POLICY_DURABILITY_VOLATILE;
-
   // Create beam subscribers
   this->beamSub0.reset(new message_filters::Subscriber<sensor_msgs::msg::Range>(
-    myRosNode, this->beamTopics[0], qos_profile));
+    myRosNode, this->beamTopics[0]));
   this->beamSub1.reset(new message_filters::Subscriber<sensor_msgs::msg::Range>(
-    myRosNode, this->beamTopics[1], qos_profile));
+    myRosNode, this->beamTopics[1]));
   this->beamSub2.reset(new message_filters::Subscriber<sensor_msgs::msg::Range>(
-    myRosNode, this->beamTopics[2], qos_profile));
+    myRosNode, this->beamTopics[2]));
   this->beamSub3.reset(new message_filters::Subscriber<sensor_msgs::msg::Range>(
-    myRosNode, this->beamTopics[3], qos_profile));
+    myRosNode, this->beamTopics[3]));
 
   for (int i = 0; i < 4; i++)
     this->dvlBeamMsgs.push_back(uuv_sensor_ros_plugins_msgs::msg::DVLBeam());

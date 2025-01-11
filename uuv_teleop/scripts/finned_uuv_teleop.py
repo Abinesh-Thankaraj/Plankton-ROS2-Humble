@@ -30,14 +30,6 @@ from uuv_thrusters.models import Thruster
 from plankton_utils.param_helper import parse_nested_params_to_dict
 from plankton_utils.time import is_sim_time
 
-def to_int_list(l: list):
-    cp = list(l)
-    if(len(cp) != 0 and type(cp[0]) == str):
-        if(len(cp) == 1):
-            cp = ("".join(cp)).split(",")
-        cp = [int(i) for i in cp]
-    return cp
-
 
 class FinnedUUVControllerNode(Node):
     def __init__(self, **kwargs):
@@ -71,10 +63,9 @@ class FinnedUUVControllerNode(Node):
 
         # Read the vector for contribution of each fin on the change on
         # orientation
-        gain_roll = to_int_list(self.get_parameter('gain_roll').value)
-        gain_pitch = to_int_list(self.get_parameter('gain_pitch').value)
-        gain_yaw = to_int_list(self.get_parameter('gain_yaw').value)
-        print(self._n_fins, gain_pitch, gain_roll, gain_yaw)
+        gain_roll = self.get_parameter('gain_roll').value
+        gain_pitch = self.get_parameter('gain_pitch').value
+        gain_yaw = self.get_parameter('gain_yaw').value
 
         if len(gain_roll) != self._n_fins or len(gain_pitch) != self._n_fins \
             or len(gain_yaw) != self._n_fins:
