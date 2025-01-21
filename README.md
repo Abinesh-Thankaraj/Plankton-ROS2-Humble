@@ -108,7 +108,7 @@ Install Colcon, the build tool system:
 `sudo apt install python3-colcon-common-extensions`
 
 Build the Plankton repository:  
-`colcon build --packages-up-to plankton`
+`colcon build`
 
 Source the file for your installation workspace (change the path accordingly)  
 `source $HOME/ros2_ws/install/setup.bash`  
